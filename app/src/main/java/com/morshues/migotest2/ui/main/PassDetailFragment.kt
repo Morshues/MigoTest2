@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 
 import com.morshues.migotest2.databinding.FragmentPassDetailBinding
 import com.morshues.migotest2.utilities.InjectorUtils
@@ -35,12 +36,18 @@ class PassDetailFragment : Fragment() {
             }
         }
 
-        passDetailViewModel.pass.observe(viewLifecycleOwner) { newPass ->
-            binding.pass = newPass
-        }
+        subscribeUi()
 
         return binding.root
     }
 
+    private fun subscribeUi() {
+        passDetailViewModel.pass.observe(viewLifecycleOwner) { newPass ->
+            binding.pass = newPass
+        }
 
+        passDetailViewModel.hintMsg.observe(viewLifecycleOwner) { msg ->
+            Snackbar.make(binding.root, msg, Snackbar.LENGTH_LONG).show()
+        }
+    }
 }

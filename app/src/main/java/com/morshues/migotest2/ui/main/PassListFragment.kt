@@ -38,22 +38,28 @@ class PassListFragment : Fragment() {
             // TODO: will crash if click it several times quickly
         }
 
+        return binding.root
+    }
+
+    private fun subscribeUi(adapter: PassesAdapter) {
+        viewModel.account.observe(viewLifecycleOwner) { mAccount ->
+            // Will be null before user created
+            mAccount?.apply {
+                adapter.submitList(passes)
+            }
+        }
+
+        // Observe result value from PassCreateDialog
+        val navController = findNavController()
         val handle = navController.currentBackStackEntry?.savedStateHandle
         val passCreateData
                 = handle?.getLiveData<PassCreateDialog.Result?>(PassCreateDialog.ARG_RESULT)
         passCreateData?.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 viewModel.addPass(result.type, result.num)
-                handle.remove<PassCreateDialog.Result>(PassCreateDialog.ARG_RESULT)
+                handle.set<PassCreateDialog.Result>(PassCreateDialog.ARG_RESULT, null)
             }
         }
 
-        return binding.root
-    }
-
-    private fun subscribeUi(adapter: PassesAdapter) {
-        viewModel.account.observe(viewLifecycleOwner) { mAccount ->
-            adapter.submitList(mAccount.passes)
-        }
     }
 }

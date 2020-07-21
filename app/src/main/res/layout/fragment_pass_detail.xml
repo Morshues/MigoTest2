@@ -103,7 +103,8 @@
             android:text="@string/btn_activate"
             android:onClick="@{onActivateListener}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tv_expiration_time_label" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

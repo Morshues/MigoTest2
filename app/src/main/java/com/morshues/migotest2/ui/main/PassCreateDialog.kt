@@ -3,6 +3,7 @@ package com.morshues.migotest2.ui.main
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.RadioButton
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
@@ -36,7 +37,10 @@ class PassCreateDialog : DialogFragment() {
     private fun subscribeUI(binding: DialogPassCreateBinding) {
         binding.setOnConfirmListener {
             findNavController().previousBackStackEntry?.savedStateHandle?.apply {
-                val type = if (binding.rgPassType.checkedRadioButtonId == 1) {
+                val selectedText = binding.rgPassType.run {
+                    findViewById<RadioButton>(checkedRadioButtonId).text
+                }
+                val type = if (selectedText == resources.getText(R.string.pass_type_hour)) {
                     PassType.HOUR
                 } else {
                     PassType.DAY

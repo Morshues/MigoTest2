@@ -1,6 +1,7 @@
 package com.morshues.migotest2.ui.main
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.morshues.migotest2.db.model.Pass
@@ -16,8 +17,15 @@ class PassDetailViewModel(
 
     val pass: LiveData<Pass> = migoRepository.getPass(passId)
 
+    val hintMsg: MutableLiveData<String> = MutableLiveData()
+
     fun activate(pass: Pass?) {
         if (pass == null) {
+            hintMsg.postValue("No Pass Selected")
+            return
+        }
+        if (pass.activationTime != null) {
+            hintMsg.postValue("Pass has already Activated")
             return
         }
 
@@ -36,6 +44,7 @@ class PassDetailViewModel(
         }
         viewModelScope.launch {
             migoRepository.updatePass(pass)
+            hintMsg.postValue("Activated")
         }
     }
 
