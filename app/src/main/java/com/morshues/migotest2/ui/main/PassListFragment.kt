@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.morshues.migotest2.R
 import com.morshues.migotest2.adapters.PassesAdapter
 import com.morshues.migotest2.databinding.FragmentPassListBinding
 import com.morshues.migotest2.utilities.InjectorUtils
@@ -32,10 +33,12 @@ class PassListFragment : Fragment() {
         val navController = findNavController()
 
         binding.setAddItemListener {
+            if (navController.currentDestination?.id != R.id.pass_list_fragment) {
+                return@setAddItemListener
+            }
             val direction =
                 PassListFragmentDirections.actionPassListFragmentToPassCreateDialog()
             navController.navigate(direction)
-            // TODO: will crash if click it several times quickly
         }
 
         return binding.root
