@@ -2,18 +2,13 @@ package com.morshues.migotest2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.morshues.migotest2.ui.main.MainFragment
+import androidx.databinding.DataBindingUtil
+import com.morshues.migotest2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
-        }
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
     }
-
 }

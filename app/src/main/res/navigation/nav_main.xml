@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/pass_list_fragment">
+
+    <fragment
+        android:id="@+id/pass_list_fragment"
+        android:name="com.morshues.migotest2.ui.main.PassListFragment"
+        tools:layout="@layout/fragment_pass_list">
+
+        <action
+            android:id="@+id/action_pass_list_fragment_to_pass_create_dialog"
+            app:destination="@id/pass_create_dialog" />
+
+        <action
+            android:id="@+id/action_pass_list_fragment_to_pass_detail_fragment"
+            app:destination="@id/pass_detail_fragment" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/pass_create_dialog"
+        android:name="com.morshues.migotest2.ui.main.PassCreateDialog"
+        tools:layout="@layout/dialog_pass_create" />
+
+    <fragment
+        android:id="@+id/pass_detail_fragment"
+        android:name="com.morshues.migotest2.ui.main.PassDetailFragment"
+        tools:layout="@layout/fragment_pass_detail">
+
+        <argument
+            android:name="pass_id"
+            app:argType="long" />
+
+    </fragment>
+
+</navigation>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="pass"
+            type="com.morshues.migotest2.db.model.Pass" />
+
+        <variable
+            name="onActivateListener"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.PassDetailFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="120dp" />
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_insertion_time_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:passDuration="@{pass}"
+            tools:text="1 day pass" />
+
+        <TextView
+            android:id="@+id/tv_insertion_time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/pass_insertion_time"
+            app:layout_constraintTop_toBottomOf="@id/tv_duration"
+            app:layout_constraintBottom_toTopOf="@id/tv_activation_time_label"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:layout_constraintTop_toTopOf="@id/tv_insertion_time_label"
+            app:layout_constraintBottom_toBottomOf="@id/tv_insertion_time_label"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:passTime="@{pass.insertionTime}" />
+
+        <TextView
+            android:id="@+id/tv_activation_time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/pass_activation_time"
+            app:layout_constraintTop_toBottomOf="@id/tv_insertion_time_label"
+            app:layout_constraintBottom_toTopOf="@id/tv_expiration_time_label"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:layout_constraintTop_toTopOf="@id/tv_activation_time_label"
+            app:layout_constraintBottom_toBottomOf="@id/tv_activation_time_label"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:passTime="@{pass.activationTime}" />
+
+        <TextView
+            android:id="@+id/tv_expiration_time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/pass_expiration_time"
+            app:layout_constraintTop_toBottomOf="@id/tv_activation_time_label"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:layout_constraintTop_toTopOf="@id/tv_expiration_time_label"
+            app:layout_constraintBottom_toBottomOf="@id/tv_expiration_time_label"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:passTime="@{pass.expirationTime}" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_margin="16dp"
+            android:text="@string/btn_activate"
+            android:onClick="@{onActivateListener}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

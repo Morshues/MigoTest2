@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import
+            alias="PassType"
+            type="com.morshues.migotest2.db.model.PassType" />
+
+        <variable
+            name="passType"
+            type="PassType" />
+
+        <variable
+            name="number"
+            type="int" />
+
+        <variable
+            name="onConfirmListener"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="80dp" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="@string/dialog_pass_create_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_pass_create_type"
+            android:labelFor="@id/rg_pass_type"
+            app:layout_constraintTop_toTopOf="@id/rg_pass_type"
+            app:layout_constraintBottom_toBottomOf="@id/rg_pass_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideline"/>
+
+        <RadioGroup
+            android:id="@+id/rg_pass_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintBottom_toTopOf="@id/et_num"
+            app:layout_constraintStart_toStartOf="@id/guideline">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pass_type_hour"
+                android:checked="@{passType == PassType.HOUR}" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pass_type_day"
+                android:checked="@{passType == PassType.DAY}" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_pass_create_number"
+            android:labelFor="@id/et_num"
+            app:layout_constraintTop_toTopOf="@id/et_num"
+            app:layout_constraintBottom_toBottomOf="@id/et_num"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideline"/>
+
+        <EditText
+            android:id="@+id/et_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:text="@={`` + number}"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/rg_pass_type"
+            app:layout_constraintBottom_toTopOf="@id/btn_confirm"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            tools:text="1" />
+
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm"
+            android:onClick="@{onConfirmListener}"
+            app:layout_constraintTop_toBottomOf="@id/et_num"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

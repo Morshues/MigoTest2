@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">MigoTest2</string>
+
+    <!-- Common -->
+    <string name="confirm">Confirm</string>
+
+    <!-- Pass List -->
+    <string name="pass_type_hour">Hour</string>
+    <plurals name="pass_hour">
+        <item quantity="one">%d hour pass</item>
+        <item quantity="other">%d hours pass</item>
+    </plurals>
+
+    <string name="pass_type_day">Day</string>
+    <plurals name="pass_day">
+        <item quantity="one">%d day pass</item>
+        <item quantity="other">%d days pass</item>
+    </plurals>
+
+    <string name="pass_state_added">Added</string>
+    <string name="pass_state_activated">Activated</string>
+    <string name="pass_state_expired">Expired</string>
+
+    <!-- Pass Create Dialog -->
+    <string name="dialog_pass_create_title">Pass Create Dialog</string>
+    <string name="dialog_pass_create_type">Pass Type</string>
+    <string name="dialog_pass_create_number">Number</string>
+
+    <!-- Pass Detail -->
+    <string name="pass_insertion_time">Insertion Time</string>
+    <string name="pass_activation_time">Activation Time</string>
+    <string name="pass_expiration_time">Expiration Time</string>
+    <string name="btn_activate">Activate</string>
+
 </resources>
