@@ -21,4 +21,11 @@ class Converters {
         }
         return Calendar.getInstance().apply { timeInMillis = value }
     }
+
+    @TypeConverter
+    fun toTimeZone(value: String) = TimeZone.getTimeZone(value)
+
+    @TypeConverter
+    fun fromTimeZone(value: TimeZone) = value.id
+
 }

@@ -15,6 +15,9 @@ interface AccountDao {
     @Query("SELECT * FROM user WHERE id = :id")
     fun get(id: Long): LiveData<UserWithPasses>
 
+    @Query("SELECT * FROM user WHERE id = :id")
+    fun getUser(id: Long): User
+
     @Insert
     fun insert(user: User): Long
 }
