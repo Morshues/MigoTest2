@@ -11,7 +11,7 @@ class MigoRepository (
 ){
     fun getAccount() = accountDao.getFirst()
 
-    fun getUser(id: Long) = accountDao.getUser(id)
+    fun getAccount(userId: Long) = accountDao.get(userId)
 
     fun getPass(passId: Long) = passDao.get(passId)
 

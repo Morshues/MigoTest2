@@ -13,10 +13,7 @@ interface AccountDao {
 
     @Transaction
     @Query("SELECT * FROM user WHERE id = :id")
-    fun get(id: Long): LiveData<UserWithPasses>
-
-    @Query("SELECT * FROM user WHERE id = :id")
-    fun getUser(id: Long): User
+    fun get(id: Long): UserWithPasses
 
     @Insert
     fun insert(user: User): Long

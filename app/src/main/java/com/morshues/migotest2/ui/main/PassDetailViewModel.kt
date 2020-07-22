@@ -31,8 +31,13 @@ class PassDetailViewModel(
         }
 
         viewModelScope.launch(Dispatchers.IO) {
-            val user = migoRepository.getUser(pass.userId)
-            val timeZone = user.timeZone
+            val account = migoRepository.getAccount(pass.userId)
+            if (account.hasActivatedPass()) {
+                hintMsg.postValue("There is a pass already activated")
+                return@launch
+            }
+
+            val timeZone = account.user.timeZone
             pass.activationTime = Calendar.getInstance()
             pass.expirationTime = Calendar.getInstance(timeZone).apply {
                 if (pass.type == PassType.HOUR) {
@@ -45,6 +50,7 @@ class PassDetailViewModel(
                 set(Calendar.SECOND, 0)
                 set(Calendar.MILLISECOND, 0)
             }
+
             migoRepository.updatePass(pass)
             hintMsg.postValue("Activated")
         }
