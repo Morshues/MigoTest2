@@ -37,19 +37,7 @@ class PassDetailViewModel(
                 return@launch
             }
 
-            val timeZone = account.user.timeZone
-            pass.activationTime = Calendar.getInstance()
-            pass.expirationTime = Calendar.getInstance(timeZone).apply {
-                if (pass.type == PassType.HOUR) {
-                    add(Calendar.HOUR_OF_DAY, pass.num+1)
-                } else {
-                    add(Calendar.DATE, pass.num+1)
-                    set(Calendar.HOUR_OF_DAY, 0)
-                }
-                set(Calendar.MINUTE, 0)
-                set(Calendar.SECOND, 0)
-                set(Calendar.MILLISECOND, 0)
-            }
+            pass.activate(account.user.timeZone)
 
             migoRepository.updatePass(pass)
             hintMsg.postValue("Activated")

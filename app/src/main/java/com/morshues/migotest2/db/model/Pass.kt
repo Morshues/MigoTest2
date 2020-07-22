@@ -33,6 +33,21 @@ data class Pass(
             }
         }
     }
+
+    fun activate(timeZone: TimeZone) {
+        activationTime = Calendar.getInstance()
+        expirationTime = Calendar.getInstance(timeZone).apply {
+            if (type == PassType.HOUR) {
+                add(Calendar.HOUR_OF_DAY, num+1)
+            } else {
+                add(Calendar.DATE, num+1)
+                set(Calendar.HOUR_OF_DAY, 0)
+            }
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+    }
 }
 
 enum class PassState {
