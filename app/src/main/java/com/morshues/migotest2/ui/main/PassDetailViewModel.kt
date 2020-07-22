@@ -35,8 +35,8 @@ class PassDetailViewModel(
             if (pass.type == PassType.HOUR) {
                 add(Calendar.HOUR_OF_DAY, pass.num+1)
             } else {
-                add(Calendar.DATE, pass.num)
-                set(Calendar.HOUR_OF_DAY, pass.num+1)
+                add(Calendar.DATE, pass.num+1)
+                set(Calendar.HOUR_OF_DAY, 0)
             }
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
