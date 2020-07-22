@@ -16,5 +16,5 @@ interface AccountDao {
     fun get(id: Long): UserWithPasses
 
     @Insert
-    fun insert(user: User): Long
+    suspend fun insert(user: User): Long
 }
