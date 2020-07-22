@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="pass_added">#FFFFFF</color>
+    <color name="pass_activated">#EEEE66</color>
+    <color name="pass_expired">#666666</color>
 </resources>

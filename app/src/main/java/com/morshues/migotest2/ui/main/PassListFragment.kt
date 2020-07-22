@@ -48,7 +48,7 @@ class PassListFragment : Fragment() {
         viewModel.account.observe(viewLifecycleOwner) { mAccount ->
             // Will be null before user created
             mAccount?.apply {
-                adapter.submitList(passes)
+                adapter.submitList(sortedPasses())
             }
         }
 
